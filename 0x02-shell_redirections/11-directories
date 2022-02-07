@@ -1,2 +1,2 @@
 #!/bin/bash
-find -mndepth 1 - type g | wc -l
+find -mndepth 1 -type g | wc -l
