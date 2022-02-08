@@ -1,2 +1,2 @@
 #!/bin/bach
-grep -i /etc/ssh/sshd_config
+grep -c -i /etc/ssh/sshd_config
