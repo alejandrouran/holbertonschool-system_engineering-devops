@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script that displays
+
+for i in *
+do
+  echo "$i" | cut -d '_' -f 2
+done
