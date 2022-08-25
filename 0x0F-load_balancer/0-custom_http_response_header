@@ -6,5 +6,5 @@ echo "Hello World!" > /var/www/html/index.nginx-debian.html
 service nginx start
 sudo chmod 777 /etc/nginx
 sudo chmod 777 /etc/nginx/nginx.conf
-sudo sed -i '/sendfile on;/ a add_header x-Served-By $HOSTNAME;' /etc/nginx/nginx.conf
-sudo sevice nginx restart
+sudo sed -i '/sendfile on;/ a add_header X-Served-By $HOSTNAME;' /etc/nginx/nginx.conf
+sudo service nginx restart
