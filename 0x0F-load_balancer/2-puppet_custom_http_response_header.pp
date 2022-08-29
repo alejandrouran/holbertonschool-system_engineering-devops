@@ -3,7 +3,7 @@ exec { '/usr/bin/env apt-get -y update' : }
 -> package { 'nginx':
   ensure => installed,
 }
--> file { '/var/var/html/index.html' :
+-> file { '/var/www/html/index.html' :
   content => 'Holberton School!',
 }
 -> file_line {'add header' :
