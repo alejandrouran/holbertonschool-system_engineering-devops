@@ -4,14 +4,14 @@ exec { '/usr/bin/env apt-get -y update' : }
   ensure => installed,
 }
 -> file { '/var/www/html/index.html' :
-  content => 'Holberton School!',
+  content => 'Hello World',
 }
--> file_line {'add header' :
+-> file_line { 'add header' :
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
   line   => "\tadd_header X-Served-By ${hostname};",
   after  => 'server_name _;',
 }
 -> service { 'nginx':
-  ensure => runnig,
+  ensure => running,
 }
