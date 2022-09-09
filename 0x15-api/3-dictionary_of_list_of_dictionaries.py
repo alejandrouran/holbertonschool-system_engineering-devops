@@ -17,5 +17,6 @@ if __name__ == '__main__':
                 "completed": task_dict.get("completed"),
                 "username": user_dict.get("username")
             } for task_dict in requests.get(url + "todos",
-                                    params={"userId": user_dict.get("id")}).json()]
+                                            params={"userId": user_dict.get(
+                                                     "id")}).json()]
             for user_dict in user}, jsonfile)
