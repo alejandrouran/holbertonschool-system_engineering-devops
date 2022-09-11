@@ -13,10 +13,10 @@ def number_of_subscribers(subreddit):
     number of suscribes
     """
     try:
-        base_url = 'https://www.reddit.com/r/'
-        headers = {'User-Agent': 'Mozilla/5.0'}
+        url = 'https://www.reddit.com/r/'
+        head = {'User-Agent': 'Mozilla/5.0'}
         r = requests.get(
-            base_url + '{}/about.json'.format(subreddit), headers=headers)
+            base_url + '{}/about.json'.format(subreddit), head=head)
         return r.json().get('data').get('subscribers')
     except ValueError:
         return 0
