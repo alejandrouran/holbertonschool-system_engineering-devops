@@ -4,7 +4,6 @@ queries the Reddit API and returns
 the number of subscribers
 """
 
-import json
 import requests
 
 
@@ -12,19 +11,13 @@ def top_ten(subreddit):
     """
     ...
     """
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    head = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "limit": 10
-    }
-
-    r = requests.get(url, headers=headers, params=params,
-                     allow_redirects=False)
-
-    if r.status == 404:
-        print("None")
-        return
-    results = response.json().get("data")
-    [print(c.get("data").get("title")) for c in results.get("children")]
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    head = {'User-Agent': 'Alejandro Uran'}
+    _size = {"limit": 10}
+    r = requests.get(base_url, params=_size, head=head).json()
+    child = r.get('data', {}).get('children', None)
+    if child:
+        for results in child:
+            print(results.get('data').get('title'))
+    else:
+        print(None)
