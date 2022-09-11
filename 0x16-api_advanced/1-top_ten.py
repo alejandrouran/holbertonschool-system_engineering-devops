@@ -11,12 +11,18 @@ def top_ten(subreddit):
     """
     ...
     """
-    r = requests.get("https://www.reddit.com/r/{}/hot.json?limit=10"
-                            .format(subreddit),
-                            headers={"User-Agent": "My-User-Agent"},
-                            allo=False)
-    if r.status >= 300:
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    user = 'reddit_user'
+
+    headers = {'User-Agent': user}
+
+    req = requests.get(url, headers=headers, allow_redirects=False)
+
+    if req.status_code != 200:
         print('None')
     else:
-        [print(child.get("data").get("title"))
-         for child in sub_info.json().get("data").get("children")]
+        data = req.json()['data']
+        post_list = data['children']
+
+        for posts in post_list[0:10]:
+            print(posts['data']['title'])
