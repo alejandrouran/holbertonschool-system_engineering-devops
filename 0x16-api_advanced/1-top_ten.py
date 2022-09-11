@@ -11,13 +11,12 @@ def top_ten(subreddit):
     """
     ...
     """
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-    head = {'User-Agent': 'Alejandro Uran'}
-    _size = {"limit": 10}
-    r = requests.get(base_url, params=_size, head=head).json()
-    child = r.get('data', {}).get('children', None)
-    if child:
-        for results in child:
-            print(results.get('data').get('title'))
+    r = requests.get("https://www.reddit.com/r/{}/hot.json?limit=10"
+                            .format(subreddit),
+                            headers={"User-Agent": "My-User-Agent"},
+                            allo=False)
+    if r.status >= 300:
+        print('None')
     else:
-        print(None)
+        [print(child.get("data").get("title"))
+         for child in sub_info.json().get("data").get("children")]
