@@ -5,18 +5,17 @@ and returns the number of subscribers
 """
 
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
     """
     number of suscribes
     """
-    try:
-        url = 'https://www.reddit.com/r/'
-        head = {'User-Agent': 'Mozilla/5.0'}
-        r = requests.get(
-            base_url + '{}/about.json'.format(subreddit), head=head)
-        return r.json().get('data').get('subscribers')
-    except ValueError:
+    r = requests.get("https://www.reddit.com/r/{}/about.json"
+                     .format(subreddit),
+                     headers={"User-Agent": "My-User-Agent"},
+                     allow_r=False)
+    if r.status_code >= 300:
         return 0
+
+    return sub_info.json().get("data").get("subscribers")
