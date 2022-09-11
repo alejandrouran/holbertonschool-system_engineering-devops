@@ -7,7 +7,7 @@ the number of subscribers
 import requests
 
 
-def top_ten(subreddit)
+def top_ten(subreddit):
     """
     ...
     """
